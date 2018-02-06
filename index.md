@@ -1,7 +1,7 @@
 * [Server Information](#server-information)
 * [Dataset Information](#dataset-information)
 * [Linux Command Line](#linux-command-line)
-* [Raw QC](#raw-quality-control-(qc))
+* [Raw QC](#raw-quality-control)
 * [Quality Filtering and Trimming](#quality-filtering-and-trimming)
 * [Reference Genome Index](#reference-genome-index)
 * [Align Reads](#align-reads)
@@ -39,7 +39,7 @@ cd write_your_UH_username_here
 
 For example, `cd mmenor` in my case. You can run the `ls` command again to confirm you've changed folders and your current working directory is empty. Now we're ready to start the data analysis.
 
-# Raw Quality Control (QC)
+# Raw Quality Control
 
 Garbage in is garbage out, so let's see check if we have quality issues with our raw reads. We'll be using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/) for this purpose.
 
