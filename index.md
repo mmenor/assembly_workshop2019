@@ -13,6 +13,8 @@
 
 # Server Information
 
+Probably should make an account for each participant if we're going to use R Studio Server for the R portion.
+
 # Dataset Information
 
 # Linux Command Line
@@ -135,3 +137,5 @@ SnpEff is a Java program and usually you'll need to specify the max amount of RA
 # Analysis in R
 
 Now that we have our annotated VCF file, let's explore it using [R](https://www.r-project.org/). We'll use the [vcfR](https://cran.r-project.org/web/packages/vcfR/index.html) package.
+
+
