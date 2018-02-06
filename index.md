@@ -6,7 +6,7 @@
 * [Align Reads](#align-reads)
 * [Alignment Metrics](#alignment-metrics)
 * [Determine Genotypes](#determine-genotypes)
-* [Variant Annotation-(#variant-annotation)
+* [Variant Annotation](#variant-annotation)
 
 
 # Server Information
