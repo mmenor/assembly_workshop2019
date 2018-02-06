@@ -6,7 +6,7 @@
 * [Reference Genome Index](#reference-genome-index)
 * [Align Reads](#align-reads)
 * [Alignment Metrics](#alignment-metrics)
-* [Determine Genotypes](#determine-genotypes)
+* [Variant Detection](#variant-detection)
 * [Variant Annotation](#variant-annotation)
 * [Analysis in R](#analysis-in-r)
 
@@ -103,24 +103,35 @@ To sort the read in the BAM file by alignment position, we use the `samtools sor
 
 # Alignment Metrics
 
+Bowtie2 does provide some metrics on how well the alignment went, e.g. % of reads aligned, but it is useful to save a table with such metrics. This is easy to do using [Picard](https://broadinstitute.github.io/picard/index.html).
+
 ```bash
-picard CollectAlignmentSummaryMetrics INPUT=alignment/SRR097849.bam OUTPUT=alignment/SRR097849_metrics.txt REFERENCE_SEQUENCE=reference/hg19chr21.fa
+picard CollectAlignmentSummaryMetrics INPUT=alignment/SRR097849.bam OUTPUT=alignment/SRR097849_metrics.txt REFERENCE_SEQUENCE=/home/bqhs/reference/hg19chr21.fa
 ```
 
-# Determine Genotypes
+The `picard CollectAlignmentSummaryMetrics` takes three arguments. `INPUT` specifies the input BAM file, as you'd expect. `OUTPUT` specifies your preferred name of the output table. Lastly `REFERECE_SEQUENCE` should specify the same FASTA file you used as the reference for the alignment.
+
+# Variant Detection
+
+We will use [FreeBayes](https://github.com/ekg/freebayes) for variant detection. From the input BAM file, FreeBayes will detect variants and report the genotype(s) of the sample(s) in a VCF file.
 
 ```bash
 mkdir variants
 freebayes -f reference/hg19chr21.fa alignment/SRR097849.bam > variants/SRR097849.vcf
-bcftools norm -f reference/hg19chr21.fa variants/SRR097849.vcf > variants/SRR097849_norm.vcf
 ```
+
+We first create a new folder, `variants`, to store our variant data. We then call `freebayes`. The `-f` argument specifies the FASTA file for the reference genome. This should be the same file used for alignment. Next we specify the input BAM file. Normally FreeBayes will print the output to your terminal's screen. We can redirect it and save it in an output file instead, using `> variants/SRR097849.vcf` at the end of the command.
 
 # Variant Annotation
 
+The raw VCF isn't too interesting, as it is missing annotation of what that variant could be (missense mutation, etc.). We can add that information using [SnpEff](http://snpeff.sourceforge.net/). 
+
 ```bash
-snpEff -Xmx1g ann hg19 -s variants/stats.html variants/SRR097849_norm.vcf > variants/SRR097849_ann.vcf
-bgzip -c variants/SRR097849_ann.vcf > variants/SRR097849_ann.vcf.gz
-tabix -p vcf variants/SRR097849_ann.vcf.gz
+snpEff -Xmx2g ann hg19 -s variants/stats.html variants/SRR097849.vcf > variants/SRR097849_ann.vcf
 ```
 
+SnpEff is a Java program and usually you'll need to specify the max amount of RAM it can use. Here I specified 2 GB of RAM with `-Xmx2g`, as in my experience that is sufficient for this dataset. The next argument `ann` specifies that we want to annote our input VCF file. `hg19` specifies the reference genome database to annotate with, which is human genome build hg19 in this case. `-s` specifies the name of the output for some basic stats on our dataset. Next we specify `variants/SRR097849.vcf` as our input VCF file. We save our output using the same redirection trick we did with FreeBayes, "> variants/SRR097849_ann.vcf".
+
 # Analysis in R
+
+Now that we have our annotated VCF file, let's explore it using [R](https://www.r-project.org/). We'll use the [vcfR](https://cran.r-project.org/web/packages/vcfR/index.html) package.
