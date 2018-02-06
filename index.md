@@ -1,5 +1,6 @@
 * [Server Information](#server-information)
 * [Dataset Information](#dataset-information)
+* [Linux Command Line](#linux-command-line)
 * [Raw QC](#raw-quality-control-(qc))
 * [Quality Filtering and Trimming](#quality-filtering-and-trimming)
 * [Reference Genome Index](#reference-genome-index)
@@ -13,7 +14,29 @@
 
 # Dataset Information
 
-# Linux Command-line
+# Linux Command Line
+
+A complete tutorial on the Linux command line is a full workshop on its own. Please refer to other resources, e.g. [Ryan's Tutorials](https://ryanstutorials.net/linuxtutorial/). For our purposes, we just need to know some basic navigation.
+
+You are signed on as a guest on the tutorial server, so when you first log in, your current working directory is `/home/guest`. Everyone in the workshop should work in a different directory, so let's make a folder named after yourself.
+
+```bash
+mkdir write_your_UH_username_here
+```
+
+For example, `mkdir mmenor` if your UH username is _mmenor_. Let us confirm you created a directory by listing the contents of your working directory,
+
+```bash
+ls
+```
+
+You should see a folder with your UH username, among the other workshop participants. Let's now change our working directory to your newly created folder using the change directory command,
+
+```bash
+cd write_your_UH_username_here
+```
+
+For example, `cd mmenor` in my case. You can run the `ls` command again to confirm you've changed folders and your current working directory is empty. Now we're ready to start the data analysis.
 
 # Raw Quality Control (QC)
 
