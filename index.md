@@ -164,7 +164,7 @@ The `SnpSift extractFields`command is rather complicated. You first specify the 
 * POS: Position number of variant
 * REF: Reference allele
 * ALT: Alternate allele
-* QUAL: For FreeBayes, this is the probability of locus not being polymorphic in Phred scale. E.g. If QUAL > 20, then the probability of polymorphism > 99%.
+* QUAL: For FreeBayes, this is the probability of locus being polymorphic in Phred scale. E.g. If QUAL > 20, then the probability of polymorphism > 99%.
 * DP: Read depth. Number of reads covering locus.
 * RO: Number of reads supporting reference allele
 * AO: Number of reads supporting alternative allele
