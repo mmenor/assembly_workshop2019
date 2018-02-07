@@ -11,7 +11,7 @@
 
 # Server Information
 
-We will be using a Linux server (Ubuntu) for this workshop. You will need to use (PuTTY)[https://www.chiark.greenend.org.uk/~sgtatham/putty/] on Windows or `ssh` on the Terminal in macOS.
+We will be using a Linux server (Ubuntu) for this workshop. You will need to use [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/) on Windows or `ssh` on the Terminal in macOS.
 
 # Dataset Information
 
