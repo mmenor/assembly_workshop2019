@@ -8,8 +8,6 @@
 * [Alignment Metrics](#alignment-metrics)
 * [Variant Detection](#variant-detection)
 * [Variant Annotation](#variant-annotation)
-* [Analysis in R](#analysis-in-r)
-
 
 # Server Information
 
