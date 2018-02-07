@@ -15,11 +15,11 @@ We will be using a Linux server (Ubuntu) for this workshop. You will need to use
 
 # Dataset Information
 
-[MCF7 breast cancer cell line](https://www.ncbi.nlm.nih.gov/sra/SRX040531). On the server we have a 10% subsample of the data for tutorial purposes saved at `/home/bqhs/reads/SRR097849_1.fastq` and `/home/bqhs/reads/SRR097849_2.fastq`. This is a paired-end experiment and thus we have two FASTQ files, one per end. FASTQ is the file format for raw reads and it contains information on the sequence and the quality (accurracy) of each base call.
+[MCF7 breast cancer cell line](https://www.ncbi.nlm.nih.gov/sra/SRX040531). On the server we have a 10% subsample of the data for tutorial purposes saved at `/home/bqhs/workshop/SRR097849_1.fastq` and `/home/bqhs/workshop/SRR097849_2.fastq`. This is a paired-end experiment and thus we have two FASTQ files, one per end. FASTQ is the file format for raw reads and it contains information on the sequence and the quality (accurracy) of each base call.
 
-Alignment of raw reads to a full reference genome is resource consuming, so for this tutorial we will only align to chromosome 21 of the human genome (hg19). There reference can be viewed here, `/home/bqhs/reference/hg19chr21.fa`.
+Alignment of raw reads to a full reference genome is resource consuming, so for this tutorial we will only align to chromosome 21 of the human genome (hg19). There reference can be viewed here, `/home/bqhs/workshop/hg19chr21.fa`.
 
-At the end of this tutorial, we would like to see which variants we've detected in the MCF7 dataset correspond to known variants in the dbSnp database. The database for chromosome 21 can be viewed here, `/home/bqhs/dbsnp.hg19.21.vcf`.
+At the end of this tutorial, we would like to see which variants we've detected in the MCF7 dataset correspond to known variants in the dbSnp database. The database for chromosome 21 can be viewed here, `/home/bqhs/workshop/dbsnp.hg19.21.vcf`.
 
 # Linux Command Line
 
@@ -51,7 +51,7 @@ Garbage in is garbage out, so let's see check if we have quality issues with our
 
 ```bash
 mkdir raw_qc
-fastqc -o raw_qc /home/bqhs/reads/SRR097849_1.fastq /home/bqhs/reads/SRR097849_2.fastq
+fastqc -o raw_qc /home/bqhs/workshop/SRR097849_1.fastq /home/bqhs/workshop/SRR097849_2.fastq
 ```
 The first command creates a new folder that will store our results `raw_qc`. The `fastqc` command takes in three arguments. `-o raw_qc` specifies where the output will be saved, in this case our newly created `raw_qc` folder. Since our reads our paired-end, the next two arguments specify the FASTQ files of the pair.
 
@@ -65,7 +65,7 @@ As you saw, base quality degrades at the ends of the read, particularly at the 5
 
 ```bash
 mkdir filtered_reads
-cutadapt -m 20 -q 20,20 --pair-filter=any -o filtered_reads/trim_SRR097849_1.fastq -p filtered_reads/trim_SRR097849_2.fastq /home/bqhs/reads/SRR097849_1.fastq /home/bqhs/reads/SRR097849_2.fastq
+cutadapt -m 20 -q 20,20 --pair-filter=any -o filtered_reads/trim_SRR097849_1.fastq -p filtered_reads/trim_SRR097849_2.fastq /home/bqhs/workshop/SRR097849_1.fastq /home/bqhs/workshop/SRR097849_2.fastq
 ```
 
 As with the previously step, we first create a new folder to store our filtered and trimmed reads, `filtered_reads`. Next we call `cutadapt` with the following arguments. `-m 20` tells cutadapt to discard reads, after trimming, shorter than length 20 bases. `-q 20,20` specifies the Phred qualty score cutoffs for the low-quality trimming of the 5' and 3' ends of the read. In this case, we trim a base off the 5' or 3' end if its Phred score is below 20.
@@ -87,7 +87,7 @@ The next command is for your future reference. We've already built an index for 
 The next step will be aligning the filtered and trimmed reads to a reference human genome (hg19). Aligners for short DNA reads require an index of the reference genome in order to align efficiently. We've chosen [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) as our aligner. Therefore, we need an index compatible with Bowtie2 and that can be created using the following command,
 
 ```bash
-bowtie2-build /home/bqhs/reference/hg19chr21.fa /home/bqhs/reference/hg19chr21.fa
+bowtie2-build /home/bqhs/workshop/hg19chr21.fa /home/bqhs/reference/hg19chr21.fa
 ```
 
 While the arguments look identical, they have different purposes. The first argument specifies a FASTA file of the sequence(s) we want to index. In this case contains only chromosome 21 of the human genome. The second argument specifies the name of the index, which I chose to name the same as the input.
@@ -97,7 +97,7 @@ While the arguments look identical, they have different purposes. The first argu
 There are many progams to pick for aligning DNA reads to a reference. We've chosen [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) as our aligner. The output of Bowtie2 aligning the reads (FASTQ files) is a single file containing both the aligned and unaligned reads called a SAM file.
 ```bash
 mkdir alignment
-bowtie2 -x /home/bqhs/reference/hg19chr21.fa -1 filtered_reads/trim_SRR097849_1.fastq -2 filtered_reads/trim_SRR097849_2.fastq -S alignment/SRR097849.sam
+bowtie2 -x /home/bqhs/workshop/hg19chr21.fa -1 filtered_reads/trim_SRR097849_1.fastq -2 filtered_reads/trim_SRR097849_2.fastq -S alignment/SRR097849.sam
 ```
 
 We again create a new folder, `alignment`, to save our results (BAM and SAM files). The next command, `bowtie2`, executes the alignment using Bowtie2. The first argument, `-x`, specifies the reference genome. In this case, it is chromosome 21 of the human genome. `-1` and `-2` specifies the input paired-end reads. We're using our filtered and trimmed reads here. Finally `-S` specifies the name of our output SAM file.
@@ -130,7 +130,7 @@ samtools index alignment/SRR097849.bam
 Bowtie2 does provide some metrics on how well the alignment went, e.g. % of reads aligned, but it is useful to save a table with such metrics. This is easy to do using Picard.
 
 ```bash
-picard CollectAlignmentSummaryMetrics INPUT=alignment/SRR097849.bam OUTPUT=alignment/SRR097849_metrics.txt REFERENCE_SEQUENCE=/home/bqhs/reference/hg19chr21.fa
+picard CollectAlignmentSummaryMetrics INPUT=alignment/SRR097849.bam OUTPUT=alignment/SRR097849_metrics.txt REFERENCE_SEQUENCE=/home/bqhs/workshop/hg19chr21.fa
 ```
 
 The `picard CollectAlignmentSummaryMetrics` takes three arguments. `INPUT` specifies the input BAM file, as you'd expect. `OUTPUT` specifies your preferred name of the output table. Lastly `REFERECE_SEQUENCE` should specify the same FASTA file you used as the reference for the alignment.
@@ -141,7 +141,7 @@ We will use [FreeBayes](https://github.com/ekg/freebayes) for variant detection.
 
 ```bash
 mkdir variants
-freebayes -f reference/hg19chr21.fa alignment/SRR097849.bam > variants/SRR097849.vcf
+freebayes -f /home/bqhs/workshop/hg19chr21.fa alignment/SRR097849.bam > variants/SRR097849.vcf
 ```
 
 We first create a new folder, `variants`, to store our variant data. We then call `freebayes`. The `-f` argument specifies the FASTA file for the reference genome. This should be the same file used for alignment. Next we specify the input BAM file. Normally FreeBayes will print the output to your terminal's screen. We can redirect it and save it in an output file instead, using `> variants/SRR097849.vcf` at the end of the command.
@@ -159,7 +159,7 @@ SnpEff is a Java program and usually you'll need to specify the max amount of RA
 It would also be useful know if any of the SNPs are known and documented. We can compare to [dbSnp](https://www.ncbi.nlm.nih.gov/projects/SNP/) using [SnpSift](http://snpeff.sourceforge.net/SnpSift.html).
 
 ```bash
-SnpSift annotate /home/bqhs/dbsnp.hg19.21.vcf variants/SRR097849_snpEff.vcf > variants/SRR097849_dbSnp.vcf
+SnpSift annotate /home/bqhs/workshop/dbsnp.hg19.21.vcf variants/SRR097849_snpEff.vcf > variants/SRR097849_dbSnp.vcf
 ```
 Here we call SnpSift to annotate using the dbSnp VCF we downloaded from the link above for hg19. We again use redirection to save the resulting VCF file.
 
