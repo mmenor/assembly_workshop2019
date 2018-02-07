@@ -11,7 +11,15 @@
 
 # Server Information
 
+We will be using a Linux server (Ubuntu) for this workshop. You will need to use (PuTTY)[https://www.chiark.greenend.org.uk/~sgtatham/putty/] on Windows or `ssh` on the Terminal in macOS.
+
 # Dataset Information
+
+[MCF7 breast cancer cell line](https://www.ncbi.nlm.nih.gov/sra/SRX040531). On the server we have a 10% subsample of the data for tutorial purposes saved at `/home/bqhs/reads/SRR097849_1.fastq` and `/home/bqhs/reads/SRR097849_2.fastq`. This is a paired-end experiment and thus we have two FASTQ files, one per end. FASTQ is the file format for raw reads and it contains information on the sequence and the quality (accurracy) of each base call.
+
+Alignment of raw reads to a full reference genome is resource consuming, so for this tutorial we will only align to chromosome 21 of the human genome (hg19). There reference can be viewed here, `/home/bqhs/reference/hg19chr21.fa`.
+
+At the end of this tutorial, we would like to see which variants we've detected in the MCF7 dataset correspond to known variants in the dbSnp database. The database can be viewed here, `/home/bqhs/dbsnp.hg19.vcf`.
 
 # Linux Command Line
 
