@@ -13,8 +13,6 @@
 
 # Server Information
 
-Probably should make an account for each participant if we're going to use R Studio Server for the R portion.
-
 # Dataset Information
 
 # Linux Command Line
@@ -62,7 +60,6 @@ As you saw, base quality degrades at the ends of the read, particularly at the 5
 ```bash
 mkdir filtered_reads
 cutadapt -m 20 -q 20,20 --pair-filter=any -o filtered_reads/trim_SRR097849_1.fastq -p filtered_reads/trim_SRR097849_2.fastq /home/bqhs/reads/SRR097849_1.fastq /home/bqhs/reads/SRR097849_2.fastq
-fastqc -o raw_qc filtered_reads/trim_SRR097849_1.fastq filtered_reads/trim_SRR097849_2.fastq
 ```
 
 As with the previously step, we first create a new folder to store our filtered and trimmed reads, `filtered_reads`. Next we call `cutadapt` with the following arguments. `-m 20` tells cutadapt to discard reads, after trimming, shorter than length 20 bases. `-q 20,20` specifies the Phred qualty score cutoffs for the low-quality trimming of the 5' and 3' ends of the read. In this case, we trim a base off the 5' or 3' end if its Phred score is below 20.
@@ -71,7 +68,11 @@ Since we are working with paired-end reads, we need to specify the pair filterin
 
 The next two arguments, `-o` and `-p` specify the names of the cutadapt output FASTQ files, the filtered and trimmed reads for the first and second ends of the paired-end reads, respectively. The final two arguments specify the input raw FASTQ files.
 
-The final `fastqc` command is optional in practice and is done here for this workshop to illustrate that cutadapt did in fact perform some trimming.
+To illustrate that cutadapt did in fact perform some trimming, we can run FastQC on our new data. In practice this is optional.
+
+```bash
+fastqc -o raw_qc filtered_reads/trim_SRR097849_1.fastq filtered_reads/trim_SRR097849_2.fastq
+```
 
 # Reference Genome Index
 
@@ -87,19 +88,22 @@ While the arguments look identical, they have different purposes. The first argu
 
 # Align Reads
 
-There are many progams to pick for aligning DNA reads to a reference. We've chosen [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) as our aligner. The output of Bowtie2 aligning the reads (FASTQ files) is a single file containing both the aligned and unaligned reads called a SAM file. Typically a compressed version of the SAM file, called a BAM file, is used in downstream analysis. We will use [Samtools](http://www.htslib.org/) for this conversion. Samtools also lets us sort the read by alignment position and create an index for the BAM file, both of which are usually required in downstream analysis.
-
+There are many progams to pick for aligning DNA reads to a reference. We've chosen [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) as our aligner. The output of Bowtie2 aligning the reads (FASTQ files) is a single file containing both the aligned and unaligned reads called a SAM file.
 ```bash
 mkdir alignment
 bowtie2 -x /home/bqhs/reference/hg19chr21.fa -1 filtered_reads/trim_SRR097849_1.fastq -2 filtered_reads/trim_SRR097849_2.fastq -S alignment/SRR097849.sam
-samtools view -bS alignment/SRR097849.sam -o alignment/temp.bam
-samtools sort alignment/temp.bam alignment/SRR097849
-samtools index alignment/SRR097849.bam
 ```
 
 We again create a new folder, `alignment`, to save our results (BAM and SAM files). The next command, `bowtie2`, executes the alignment using Bowtie2. The first argument, `-x`, specifies the reference genome. In this case, it is chromosome 21 of the human genome. `-1` and `-2` specifies the input paired-end reads. We're using our filtered and trimmed reads here. Finally `-S` specifies the name of our output SAM file.
 
-As mentioned previously, it is usually required in downstread analysis to convert the SAM file to a BAM file, sort it, and index it. The first command, `samtools view`, is used to convert the SAM file to a BAM file. The `-bS` flag specifies that we want our output to be a BAM file (`b`) and the input is a SAM file (`S`). The next argument is the name of our input file, which is the SAM file that Bowtie2 created for us. Lastly the `-o` argument specifies the name of the output BAM file.
+Typically a compressed version of the SAM file, called a BAM file, is used in downstream analysis. We will use [Samtools](http://www.htslib.org/) for this conversion. Samtools also lets us sort the read by alignment position and create an index for the BAM file, both of which are usually required in downstream analysis.
+
+```bash
+samtools view -bS alignment/SRR097849.sam -o alignment/temp.bam
+samtools sort alignment/temp.bam alignment/SRR097849
+samtools index alignment/SRR097849.bam
+```
+The first command, `samtools view`, is used to convert the SAM file to a BAM file. The `-bS` flag specifies that we want our output to be a BAM file (`b`) and the input is a SAM file (`S`). The next argument is the name of our input file, which is the SAM file that Bowtie2 created for us. Lastly the `-o` argument specifies the name of the output BAM file.
 
 To sort the read in the BAM file by alignment position, we use the `samtools sort` command. The first argument is the input BAM file and the second argument is the name for the output, sorted BAM file. Lastly, we created a index for our BAM file using the `samtools index` command that takes in a single argument, the name of the input BAM file.
 
@@ -129,13 +133,40 @@ We first create a new folder, `variants`, to store our variant data. We then cal
 The raw VCF isn't too interesting, as it is missing annotation of what that variant could be (missense mutation, etc.). We can add that information using [SnpEff](http://snpeff.sourceforge.net/). 
 
 ```bash
-snpEff -Xmx2g ann hg19 -s variants/stats.html variants/SRR097849.vcf > variants/SRR097849_ann.vcf
+snpEff -Xmx2g ann hg19 -s variants/stats.html variants/SRR097849.vcf > variants/SRR097849_snpEff.vcf
 ```
 
-SnpEff is a Java program and usually you'll need to specify the max amount of RAM it can use. Here I specified 2 GB of RAM with `-Xmx2g`, as in my experience that is sufficient for this dataset. The next argument `ann` specifies that we want to annote our input VCF file. `hg19` specifies the reference genome database to annotate with, which is human genome build hg19 in this case. `-s` specifies the name of the output for some basic stats on our dataset. Next we specify `variants/SRR097849.vcf` as our input VCF file. We save our output using the same redirection trick we did with FreeBayes, `> variants/SRR097849_ann.vcf`.
+SnpEff is a Java program and usually you'll need to specify the max amount of RAM it can use. Here I specified 2 GB of RAM with `-Xmx2g`, as in my experience that is sufficient for this dataset. The next argument `ann` specifies that we want to annote our input VCF file. `hg19` specifies the reference genome database to annotate with, which is human genome build hg19 in this case. `-s` specifies the name of the output for some basic stats on our dataset. Next we specify `variants/SRR097849.vcf` as our input VCF file. We save our output using the same redirection trick we did with FreeBayes, `> variants/SRR097849_snpEff.vcf`.
 
-# Analysis in R
+It would also be useful know if any of the SNPs are known and documented. We can compare to [dbSnp](ftp://ftp.ncbi.nih.gov/snp/organisms/) using [SnpSift](http://snpeff.sourceforge.net/SnpSift.html).
 
-Now that we have our annotated VCF file, let's explore it using [R](https://www.r-project.org/). We'll use the [vcfR](https://cran.r-project.org/web/packages/vcfR/index.html) package.
+```bash
+SnpSift annotate /home/bqhs/dbsnp.hg19.vcf variants/SRR097849_snpEff.vcf > variants/SRR097849_dbSnp.vcf
+```
+Here we call SnpSift to annotate using the dbSnp VCF we downloaded from the link above for hg19. We again use redirection to save the resulting VCF file.
 
+Typically we would need to filter the VCF file by chromosome or quality using `SnpSift filter`, but our tutorial VCF is small enough that we can work it directly. So let's turn the VCF file into a TXT file for ease of importing to Excel. SnpSift can do this for us too.
 
+```bash
+SnpSift extractFields variants/SRR097849_dbSnp.vcf ID CHROM POS REF ALT QUAL DP RO AO TYPE ANN[0].GENE ANN[0].EFFECT ANN[0].IMPACT ANN[0].BIOTYPE ANN[0].HGVS_C ANN[0].HGVS_P GEN[0].GT > variants/SRR097849.txt
+```
+
+The `SnpSift extractFields`command is rather complicated. You first specify the input VCF file. And in the end you redirect the output to a TXT file. The arguments in between specificy which fields of the VCF you want. These are what I selected.
+
+* ID: Will contain dbSnp IDs if available
+* CHROM: Chromosome number. All variants will be on chromosome 21 in this tutorial.
+* POS: Position number of variant
+* REF: Reference allele
+* ALT: Alternate allele
+* QUAL: For FreeBayes, this is the probability of locus not being polymorphic in Phred scale. E.g. If QUAL > 20, then the probability of polymorphism > 99%.
+* DP: Read depth. Number of reads covering locus.
+* RO: Number of reads supporting reference allele
+* AO: Number of reads supporting alternative allele
+* TYPE: SNP, complex, etc.
+* ANN[0].GENE: SnpEff can attach multiple annotations (ANN). Here I only use the first one, ANN[0]. GENE lists the gene symbol.
+* ANN[0].EFFECT: Predicted effect, e.g. missense variant
+* ANN[0].IMPACT: Predicted impact of mutation
+* ANN[0].BIOTYPE: E.g. protein coding, pseudogene
+* ANN[0].HGVS_C: Variant using HGVS notation (DNA level)
+* ANN[0].HGVS_P: Variant using HGVS notation (protein level) if applicable
+* GEN[0].GT: Typically you'd analyze multiple samples, and GEN[0], GEN[1], etc. would denote them. We only have one sample in this tutorial, so GEN[0].GT refers to this sample's genotype.
