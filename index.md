@@ -106,11 +106,11 @@ Typically a compressed version of the SAM file, called a BAM file, is used in do
 
 ```bash
 samtools view -bS alignment/SRR097849.sam -o alignment/temp_unsorted.bam
-samtools sort alignment/temp_unsorted.bam alignment/temp_sorted
+samtools sort alignment/temp_unsorted.bam -o alignment/temp_sorted
 ```
 The first command, `samtools view`, is used to convert the SAM file to a BAM file. The `-bS` flag specifies that we want our output to be a BAM file (`b`) and the input is a SAM file (`S`). The next argument is the name of our input file, which is the SAM file that Bowtie2 created for us. Lastly the `-o` argument specifies the name of the output BAM file.
 
-To sort the read in the BAM file by alignment position, we use the `samtools sort` command. The first argument is the input BAM file and the second argument is the name for the output, sorted BAM file.
+To sort the read in the BAM file by alignment position, we use the `samtools sort` command. The first argument is the input BAM file and the second argument (`-o`) is the name for the output, sorted BAM file.
 
 At this point, it is also useful to remove PCR duplicates that we may have in the data set. We use [Picard](https://broadinstitute.github.io/picard/index.html) for this purpose.
 
