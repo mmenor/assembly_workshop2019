@@ -55,7 +55,7 @@ fastqc -o raw_qc /home/bqhs/reads/SRR097849_1.fastq /home/bqhs/reads/SRR097849_2
 ```
 The first command creates a new folder that will store our results `raw_qc`. The `fastqc` command takes in three arguments. `-o raw_qc` specifies where the output will be saved, in this case our newly created `raw_qc` folder. Since our reads our paired-end, the next two arguments specify the FASTQ files of the pair.
 
-The output of FastQC is an HTML page with plots that unfortunately we cannot view with an SSH remote terminal. Let's download the results using [FileZilla](https://filezilla-project.org/). Connect using the same guest credentials you used on SSH. Navigate to `/home/guest/write_your_UH_username_here/rawqc` to find your FASTQC results.
+The output of FastQC is an HTML page with plots that unfortunately we cannot view with an SSH remote terminal. Let's download the results using [FileZilla](https://filezilla-project.org/). Connect using the same guest credentials you used on SSH. Navigate to `/home/guest/write_your_UH_username_here/raw_qc` to find your FASTQC results.
 
 The accuracy of a base's identifiy is measured using [Phred quality scores](https://en.wikipedia.org/wiki/Phred_quality_score). The higher the score, the better. Roughly, a Phred score of 20 or above (99+% accuracy) is great.
 
