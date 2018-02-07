@@ -156,7 +156,7 @@ snpEff -Xmx2g ann hg19 -s variants/stats.html variants/SRR097849.vcf > variants/
 
 SnpEff is a Java program and usually you'll need to specify the max amount of RAM it can use. Here I specified 2 GB of RAM with `-Xmx2g`, as in my experience that is sufficient for this dataset. The next argument `ann` specifies that we want to annote our input VCF file. `hg19` specifies the reference genome database to annotate with, which is human genome build hg19 in this case. `-s` specifies the name of the output for some basic stats on our dataset. Next we specify `variants/SRR097849.vcf` as our input VCF file. We save our output using the same redirection trick we did with FreeBayes, `> variants/SRR097849_snpEff.vcf`.
 
-It would also be useful know if any of the SNPs are known and documented. We can compare to [dbSnp](ftp://ftp.ncbi.nih.gov/snp/organisms/) using [SnpSift](http://snpeff.sourceforge.net/SnpSift.html).
+It would also be useful know if any of the SNPs are known and documented. We can compare to dbSnp (ftp://ftp.ncbi.nih.gov/snp/organisms/) using [SnpSift](http://snpeff.sourceforge.net/SnpSift.html).
 
 ```bash
 SnpSift annotate /home/bqhs/dbsnp.hg19.vcf variants/SRR097849_snpEff.vcf > variants/SRR097849_dbSnp.vcf
