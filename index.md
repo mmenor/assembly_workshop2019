@@ -102,20 +102,32 @@ bowtie2 -x /home/bqhs/reference/hg19chr21.fa -1 filtered_reads/trim_SRR097849_1.
 
 We again create a new folder, `alignment`, to save our results (BAM and SAM files). The next command, `bowtie2`, executes the alignment using Bowtie2. The first argument, `-x`, specifies the reference genome. In this case, it is chromosome 21 of the human genome. `-1` and `-2` specifies the input paired-end reads. We're using our filtered and trimmed reads here. Finally `-S` specifies the name of our output SAM file.
 
-Typically a compressed version of the SAM file, called a BAM file, is used in downstream analysis. We will use [Samtools](http://www.htslib.org/) for this conversion. Samtools also lets us sort the read by alignment position and create an index for the BAM file, both of which are usually required in downstream analysis.
+Typically a compressed version of the SAM file, called a BAM file, is used in downstream analysis. We will use [Samtools](http://www.htslib.org/) for this conversion. Samtools also lets us sort the read by alignment position
 
 ```bash
-samtools view -bS alignment/SRR097849.sam -o alignment/temp.bam
-samtools sort alignment/temp.bam alignment/SRR097849
-samtools index alignment/SRR097849.bam
+samtools view -bS alignment/SRR097849.sam -o alignment/temp_unsorted.bam
+samtools sort alignment/temp_unsorted.bam alignment/temp_sorted.bam
 ```
 The first command, `samtools view`, is used to convert the SAM file to a BAM file. The `-bS` flag specifies that we want our output to be a BAM file (`b`) and the input is a SAM file (`S`). The next argument is the name of our input file, which is the SAM file that Bowtie2 created for us. Lastly the `-o` argument specifies the name of the output BAM file.
 
-To sort the read in the BAM file by alignment position, we use the `samtools sort` command. The first argument is the input BAM file and the second argument is the name for the output, sorted BAM file. Lastly, we created a index for our BAM file using the `samtools index` command that takes in a single argument, the name of the input BAM file.
+To sort the read in the BAM file by alignment position, we use the `samtools sort` command. The first argument is the input BAM file and the second argument is the name for the output, sorted BAM file.
+
+At this point, it is also useful to remove PCR duplicates that we may have in the data set. We use [Picard](https://broadinstitute.github.io/picard/index.html) for this purpose.
+
+```bash
+picard MarkDuplicates I=alignment/temp_sorted.bam O=alignment/SRR097849.bam M=alignment/SRR097849_duplicates.txt
+```
+`picard MarkDuplicates` takes in three arguments. `I` specifies the input BAM file. `O` the output BAM file. Lastly, `M` specifies a TXT file where some duplicate metrics will be output to.
+
+Next, we create a index for our BAM file using the `samtools index` command that takes in a single argument, the name of the input BAM file. An BAM file index is usually required in downstream analysis.
+
+```bash
+samtools index alignment/SRR097849.bam
+```
 
 # Alignment Metrics
 
-Bowtie2 does provide some metrics on how well the alignment went, e.g. % of reads aligned, but it is useful to save a table with such metrics. This is easy to do using [Picard](https://broadinstitute.github.io/picard/index.html).
+Bowtie2 does provide some metrics on how well the alignment went, e.g. % of reads aligned, but it is useful to save a table with such metrics. This is easy to do using Picard.
 
 ```bash
 picard CollectAlignmentSummaryMetrics INPUT=alignment/SRR097849.bam OUTPUT=alignment/SRR097849_metrics.txt REFERENCE_SEQUENCE=/home/bqhs/reference/hg19chr21.fa
