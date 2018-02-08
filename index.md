@@ -1,4 +1,5 @@
 <center>
+  <h1>DNA-seq Mutation Data Analysis Workshop</h1>
   <h2>Thursday February 15 @ 9:00 AM - 12:00 PM</h2>
   <h2>JABSOM MEB, Computer Lab 107D</h2>
   <h3>Presenters: Dr. Youping Deng, Dr. Mark Menor, and Dr. Vedbar Khadka</h3>
@@ -11,7 +12,7 @@
   <img src="images/rmatrix.png" alt="RMATRIX-II" style="height: 100px;"/>&nbsp;
   <img src="images/ola_hawaii.png" alt="Ola Hawaii" style="height: 100px;"/>
 </center>
-
+<br>
 * [Server Information](#server-information)
 * [Dataset Information](#dataset-information)
 * [Linux Command Line](#linux-command-line)
