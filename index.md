@@ -1,5 +1,4 @@
 <center>
-  <h1>DNA-seq Mutation Data Analysis Workshop</h1>
   <h2>Thursday February 15 @ 9:00 AM - 12:00 PM</h2>
   <h2>JABSOM MEB, Computer Lab 107D</h2>
   <h3>Presenters: Dr. Youping Deng, Dr. Mark Menor, and Dr. Vedbar Khadka</h3>
