@@ -1,9 +1,18 @@
 <center>
+Bioinformatics and Biostatistics Cores 
+Complementary Integrative Medicine Department, 
+JABSOM, University of Hawaii
+</center>
+
+<center>
   <img src="images/jabsom.png" alt="JABSOM" style="height: 100px;"/>
   <img src="images/inbre-iii.png" alt="INBRE-III" style="height: 100px;"/>
   <img src="images/pceidr.png" alt="PCEIDR" style="height: 100px;"/>
+  
   <img src="images/rmatrix.png" alt="RMATRIX-II" style="height: 100px;"/>
+  
   UH Cancer Center Genomics & Bioinformatics Shared Resource
+  
   NIH U54 OLA HAWAII
 </center>
 
