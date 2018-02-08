@@ -189,4 +189,8 @@ The `SnpSift extractFields`command is rather complicated. You first specify the 
 * ANN[0].HGVS_P: Variant using HGVS notation (protein level) if applicable
 * GEN[0].GT: Typically you'd analyze multiple samples, and GEN[0], GEN[1], etc. would denote them. We only have one sample in this tutorial, so GEN[0].GT refers to this sample's genotype.
 
-SnpSift has a lot of functionality that can help answer your research questions. We recommended exploring their documentation further, http://snpeff.sourceforge.net/SnpSift.html. For example, if you have several samples in case and control groups and would like to statistically compare the genotype occurences of a locus between the two groups, you could use `SnpSift CaseControl`. 
+SnpSift has a lot of functionality that can help answer your research questions. We recommended exploring their documentation further, http://snpeff.sourceforge.net/SnpSift.html. For example, if you have several samples in case and control groups and would like to statistically compare the genotype occurences of a locus between the two groups, you could use `SnpSift CaseControl`.
+
+
+
+![JABSOM](https://github.com/mmenor/dnaseq_workshop_2018/blob/master/images/jabsom.png "JABSOM")
