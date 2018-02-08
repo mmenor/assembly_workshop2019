@@ -3,10 +3,10 @@
   Complementary Integrative Medicine Department,<br>
   JABSOM, University of Hawaii<br>
   UH Cancer Center Genomics & Bioinformatics Shared Resource<br>
-  <img src="images/jabsom.png" alt="JABSOM" style="height: 100px;"/>&nbsp
-  <img src="images/inbre-iii.png" alt="INBRE-III" style="height: 100px;"/>&nbsp
-  <img src="images/pceidr.png" alt="PCEIDR" style="height: 100px;"/>&nbsp
-  <img src="images/rmatrix.png" alt="RMATRIX-II" style="height: 100px;"/>&nbsp
+  <img src="images/jabsom.png" alt="JABSOM" style="height: 100px;"/>&nbsp;
+  <img src="images/inbre-iii.png" alt="INBRE-III" style="height: 100px;"/>&nbsp;
+  <img src="images/pceidr.png" alt="PCEIDR" style="height: 100px;"/>&nbsp;
+  <img src="images/rmatrix.png" alt="RMATRIX-II" style="height: 100px;"/>&nbsp;
   NIH U54 OLA HAWAII
 </center>
 
