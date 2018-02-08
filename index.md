@@ -1,3 +1,15 @@
+<center>
+  Bioinformatics and Biostatistics Cores<br>
+  Complementary Integrative Medicine Department,<br>
+  JABSOM, University of Hawaii<br>
+  UH Cancer Center Genomics & Bioinformatics Shared Resource<br>
+  <img src="images/jabsom.png" alt="JABSOM" style="height: 100px;"/>&nbsp;
+  <img src="images/inbre-iii.png" alt="INBRE-III" style="height: 100px;"/>&nbsp;
+  <img src="images/pceidr.png" alt="PCEIDR" style="height: 100px;"/>&nbsp;
+  <img src="images/rmatrix.png" alt="RMATRIX-II" style="height: 100px;"/>&nbsp;
+  NIH U54 OLA HAWAII
+</center>
+
 * [Server Information](#server-information)
 * [Dataset Information](#dataset-information)
 * [Linux Command Line](#linux-command-line)
@@ -189,4 +201,4 @@ The `SnpSift extractFields`command is rather complicated. You first specify the 
 * ANN[0].HGVS_P: Variant using HGVS notation (protein level) if applicable
 * GEN[0].GT: Typically you'd analyze multiple samples, and GEN[0], GEN[1], etc. would denote them. We only have one sample in this tutorial, so GEN[0].GT refers to this sample's genotype.
 
-SnpSift has a lot of functionality that can help answer your research questions. We recommended exploring their documentation further, http://snpeff.sourceforge.net/SnpSift.html. For example, if you have several samples in case and control groups and would like to statistically compare the genotype occurences of a locus between the two groups, you could use `SnpSift CaseControl`. 
+SnpSift has a lot of functionality that can help answer your research questions. We recommended exploring their documentation further, http://snpeff.sourceforge.net/SnpSift.html. For example, if you have several samples in case and control groups and would like to statistically compare the genotype occurences of a locus between the two groups, you could use `SnpSift CaseControl`.
