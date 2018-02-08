@@ -27,6 +27,16 @@
 
 We will be using a Linux server (Ubuntu) for this workshop. You will need to use [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/) on Windows or `ssh` on the Terminal in macOS.
 
+Windows software:
+* This computer lab requires 32-bit versions
+* PuTTY: https://the.earth.li/~sgtatham/putty/latest/w32/putty-0.70-installer.msi
+* FileZilla: http://sourceforge.net/projects/filezilla/files/FileZilla_Client/3.30.0/FileZilla_3.30.0_win32-setup.exe/download
+
+With PuTTY and FileZilla you can connect to tutorial server:
+* Address: 10.1.4.134
+* Port: 22
+* Log-in information to be provided at workshop
+
 # Dataset Information
 
 [MCF7 breast cancer cell line](https://www.ncbi.nlm.nih.gov/sra/SRX040531). On the server we have a 10% subsample of the data for tutorial purposes saved at `/home/bqhs/workshop/SRR097849_1.fastq` and `/home/bqhs/workshop/SRR097849_2.fastq`. This is a paired-end experiment and thus we have two FASTQ files, one per end. FASTQ is the file format for raw reads and it contains information on the sequence and the quality (accurracy) of each base call.
