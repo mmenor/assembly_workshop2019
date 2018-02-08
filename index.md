@@ -7,7 +7,7 @@
   <img src="images/inbre-iii.png" alt="INBRE-III" style="height: 100px;"/>&nbsp;
   <img src="images/pceidr.png" alt="PCEIDR" style="height: 100px;"/>&nbsp;
   <img src="images/rmatrix.png" alt="RMATRIX-II" style="height: 100px;"/>&nbsp;
-  NIH U54 OLA HAWAII
+  <img src="images/old_hawaii.png" alt="Ola Hawaii" style="height: 100px;"/>
 </center>
 
 * [Server Information](#server-information)
