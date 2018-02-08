@@ -1,3 +1,10 @@
+<center>
+  <img src="jabsom.png" alt="JABSOM" style="height: 100px;"/>
+  <img src="inbre-iii.png" alt="INBRE-III" style="height: 100px;"/>
+  <img src="pceidr.png" alt="PCEIDR" style="height: 100px;"/>
+  <img src="rmatrix.png" alt="RMATRIX-II" style="height: 100px;"/>
+</center>
+
 * [Server Information](#server-information)
 * [Dataset Information](#dataset-information)
 * [Linux Command Line](#linux-command-line)
@@ -190,7 +197,3 @@ The `SnpSift extractFields`command is rather complicated. You first specify the 
 * GEN[0].GT: Typically you'd analyze multiple samples, and GEN[0], GEN[1], etc. would denote them. We only have one sample in this tutorial, so GEN[0].GT refers to this sample's genotype.
 
 SnpSift has a lot of functionality that can help answer your research questions. We recommended exploring their documentation further, http://snpeff.sourceforge.net/SnpSift.html. For example, if you have several samples in case and control groups and would like to statistically compare the genotype occurences of a locus between the two groups, you could use `SnpSift CaseControl`.
-
-
-
-![JABSOM](https://raw.githubusercontent.com/mmenor/dnaseq_workshop_2018/master/images/jabsom.png "JABSOM")
