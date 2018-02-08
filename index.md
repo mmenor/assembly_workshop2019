@@ -1,8 +1,8 @@
 <center>
-  <img src="jabsom.png" alt="JABSOM" style="height: 100px;"/>
-  <img src="inbre-iii.png" alt="INBRE-III" style="height: 100px;"/>
-  <img src="pceidr.png" alt="PCEIDR" style="height: 100px;"/>
-  <img src="rmatrix.png" alt="RMATRIX-II" style="height: 100px;"/>
+  <img src="images/jabsom.png" alt="JABSOM" style="height: 100px;"/>
+  <img src="images/inbre-iii.png" alt="INBRE-III" style="height: 100px;"/>
+  <img src="images/pceidr.png" alt="PCEIDR" style="height: 100px;"/>
+  <img src="images/rmatrix.png" alt="RMATRIX-II" style="height: 100px;"/>
 </center>
 
 * [Server Information](#server-information)
