@@ -193,4 +193,4 @@ SnpSift has a lot of functionality that can help answer your research questions.
 
 
 
-![JABSOM](https://github.com/mmenor/dnaseq_workshop_2018/blob/master/images/jabsom.png "JABSOM")
+![JABSOM](https://raw.githubusercontent.com/mmenor/dnaseq_workshop_2018/master/images/jabsom.png "JABSOM")
