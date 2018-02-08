@@ -1,9 +1,11 @@
 <center>
+  <h2>Thursday February 15 @ 9:00 AM - 12:00 PM</h2>
+  <h2>JABSOM MEB, Computer Lab 107D</h2>
+  <h3>Presenters: Dr. Youping Deng, Dr. Mark Menor, and Dr. Vedbar Khadka</h3>
   Bioinformatics and Biostatistics Cores<br>
   Complementary Integrative Medicine Department,<br>
   JABSOM, University of Hawaii<br>
   UH Cancer Center Genomics & Bioinformatics Shared Resource<br>
-  <img src="images/jabsom.png" alt="JABSOM" style="height: 100px;"/>&nbsp;
   <img src="images/inbre-iii.png" alt="INBRE-III" style="height: 100px;"/>&nbsp;
   <img src="images/pceidr.png" alt="PCEIDR" style="height: 100px;"/>&nbsp;
   <img src="images/rmatrix.png" alt="RMATRIX-II" style="height: 100px;"/>&nbsp;
