@@ -14,6 +14,7 @@
 <br>
 
 * [Server Information](#server-information)
+* [Pipeline](#pipeline)
 * [Dataset Information](#dataset-information)
 * [Linux Command Line](#linux-command-line)
 * [Raw QC](#raw-quality-control)
@@ -23,10 +24,6 @@
 * [Alignment Metrics](#alignment-metrics)
 * [Variant Detection](#variant-detection)
 * [Variant Annotation](#variant-annotation)
-
-<a href="images/pipeline.png">
-  <img src="images/pipeline.png" alt="DNAseq Pipeline" style="height:200px">
-</a>
 
 # Server Information
 
@@ -41,6 +38,12 @@ With PuTTY and FileZilla you can connect to tutorial server:
 * Address: 10.1.4.134
 * Port: 22
 * Log-in information to be provided at workshop
+
+# Pipeline
+
+<a href="images/pipeline.png">
+  <img src="images/pipeline.png" alt="DNAseq Pipeline" style="height:400px">
+</a>
 
 # Dataset Information
 
