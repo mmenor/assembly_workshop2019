@@ -30,8 +30,8 @@ We will be using a Linux server (Ubuntu) for this workshop. You will need to use
 
 Windows software:
 * This computer lab requires 32-bit versions
-* PuTTY: https://the.earth.li/~sgtatham/putty/latest/w32/putty-0.70-installer.msi
-* FileZilla: http://sourceforge.net/projects/filezilla/files/FileZilla_Client/3.30.0/FileZilla_3.30.0_win32-setup.exe/download
+* PuTTY: [https://the.earth.li/~sgtatham/putty/latest/w32/putty-0.70-installer.msi](https://the.earth.li/~sgtatham/putty/latest/w32/putty-0.70-installer.msi)
+* FileZilla: [http://sourceforge.net/projects/filezilla/files/FileZilla_Client/3.30.0/FileZilla_3.30.0_win32-setup.exe/download](http://sourceforge.net/projects/filezilla/files/FileZilla_Client/3.30.0/FileZilla_3.30.0_win32-setup.exe/download)
 
 With PuTTY and FileZilla you can connect to tutorial server:
 * Address: 10.1.4.134
