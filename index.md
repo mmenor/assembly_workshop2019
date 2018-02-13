@@ -25,7 +25,7 @@
 * [Variant Annotation](#variant-annotation)
 
 <a href="images/pipeline.png">
-  <img src="pipeline.png" alt="DNAseq Pipeline" style="height:200px">
+  <img src="images/pipeline.png" alt="DNAseq Pipeline" style="height:200px">
 </a>
 
 # Server Information
