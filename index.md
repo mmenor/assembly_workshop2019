@@ -160,7 +160,7 @@ Bowtie2 does provide some metrics on how well the alignment went, e.g. % of read
 picard CollectAlignmentSummaryMetrics INPUT=alignment/SRR097849.bam OUTPUT=alignment/SRR097849_metrics.txt REFERENCE_SEQUENCE=/home/bqhs/workshop/hg19chr21.fa
 ```
 
-The `picard CollectAlignmentSummaryMetrics` takes three arguments. `INPUT` specifies the input BAM file, as you'd expect. `OUTPUT` specifies your preferred name of the output table. Lastly `REFERECE_SEQUENCE` should specify the same FASTA file you used as the reference for the alignment.
+The `picard CollectAlignmentSummaryMetrics` takes three arguments. `INPUT` specifies the input BAM file, as you'd expect. `OUTPUT` specifies your preferred name of the output table. Lastly `REFERENCE_SEQUENCE` should specify the same FASTA file you used as the reference for the alignment.
 
 # Variant Detection
 
@@ -171,7 +171,7 @@ mkdir variants
 freebayes -f /home/bqhs/workshop/hg19chr21.fa alignment/SRR097849.bam > variants/SRR097849.vcf
 ```
 
-We first create a new folder, `variants`, to store our variant data. We then call `freebayes`. The `-f` argument specifies the FASTA file for the reference genome. This should be the same file used for alignment. Next we specify the input BAM file. Normally FreeBayes will print the output to your terminal's screen. We can redirect it and save it in an output file instead, using `> variants/SRR097849.vcf` at the end of the command.
+We first create a new folder, `variants`, to store our variant data. We then call `freebayes`. The `-f` argument specifies the FASTA file for the reference genome. This should be the same file used for alignment. Next we specify the input BAM file(s). In this tutorial we only have a single sample, but if you have more, you can list them all to improve variant detection. Normally FreeBayes will print the output to your terminal's screen. We can redirect it and save it in an output file instead, using `> variants/SRR097849.vcf` at the end of the command.
 
 # Variant Annotation
 
@@ -190,7 +190,7 @@ SnpSift annotate /home/bqhs/workshop/dbsnp.hg19.21.vcf variants/SRR097849_snpEff
 ```
 Here we call SnpSift to annotate using the dbSnp VCF we downloaded from the link above for hg19. We again use redirection to save the resulting VCF file.
 
-Typically we would need to filter the VCF file by chromosome or quality using `SnpSift filter`, but our tutorial VCF is small enough that we can work it directly. So let's turn the VCF file into a TXT file for ease of importing to Excel. SnpSift can do this for us too.
+Typically we would need to filter the VCF file by chromosome or quality using `SnpSift filter`, but our tutorial VCF is small enough that we can work with it directly. So let's turn the VCF file into a TXT file for ease of importing to Excel. SnpSift can do this for us too.
 
 ```bash
 SnpSift extractFields variants/SRR097849_dbSnp.vcf ID CHROM POS REF ALT QUAL DP RO AO TYPE ANN[0].GENE ANN[0].EFFECT ANN[0].IMPACT ANN[0].BIOTYPE ANN[0].HGVS_C ANN[0].HGVS_P GEN[0].GT > variants/SRR097849.txt
