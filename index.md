@@ -117,6 +117,8 @@ bowtie2-build /home/bqhs/workshop/hg19chr21.fa /home/bqhs/reference/hg19chr21.fa
 
 While the arguments look identical, they have different purposes. The first argument specifies a FASTA file of the sequence(s) we want to index. In this case contains only chromosome 21 of the human genome. The second argument specifies the name of the index, which I chose to name the same as the input.
 
+Generally, you don't build a reference genome index with every analysis. Once you built an index for hg19, you can reuse it with future projects. In fact, you could just download pre-built indices for popular genomes and just use those, e.g. [Illumina iGenomes](https://support.illumina.com/sequencing/sequencing_software/igenome.html).
+
 # Align Reads
 
 There are many progams to pick for aligning DNA reads to a reference. We've chosen [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) as our aligner. The output of Bowtie2 aligning the reads (FASTQ files) is a single file containing both the aligned and unaligned reads called a SAM file.
