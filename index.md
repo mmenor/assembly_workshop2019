@@ -42,7 +42,7 @@ With PuTTY and FileZilla you can connect to tutorial server:
 # Pipeline
 
 <a href="images/pipeline.png">
-  <img src="images/pipeline.png" alt="DNAseq Pipeline" style="height:400px">
+  <img src="images/pipeline.png" alt="DNAseq Pipeline" style="height:600px">
 </a>
 
 # Dataset Information
