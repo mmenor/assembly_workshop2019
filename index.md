@@ -24,6 +24,7 @@
 * [Alignment Metrics](#alignment-metrics)
 * [Variant Detection](#variant-detection)
 * [Variant Annotation](#variant-annotation)
+* [Visualization](#visualization)
 
 # Server Information
 
@@ -224,3 +225,7 @@ The `SnpSift extractFields`command is rather complicated. You first specify the 
 * GEN[0].GT: Typically you'd analyze multiple samples, and GEN[0], GEN[1], etc. would denote them. We only have one sample in this tutorial, so GEN[0].GT refers to this sample's genotype.
 
 SnpSift has a lot of functionality that can help answer your research questions. We recommended exploring their documentation further, http://snpeff.sourceforge.net/SnpSift.html. For example, if you have several samples in case and control groups and would like to statistically compare the genotype occurences of a locus between the two groups, you could use `SnpSift CaseControl`.
+
+# Visualization
+
+We can also explore the variants in the context of other genome annotations using [UCSC Genome Browser](https://genome.ucsc.edu/cgi-bin/hgGateway). First download the final VCF file, `SRR097849_dbSnp.vcf`, using FileZilla to your computer. Then open UCSC Genome Browswer, picking hg19. Directly below the plot, there are several buttons. Hit "add custom tracks" to add our VCF file. Select the VCF file and submit. Finally press "go" to return to the genome browser. You should now see our VCF file in the "User Track" near the top of the plot. Right clicking on this track gives you options to control the plot and filter variants based of quality scores.
