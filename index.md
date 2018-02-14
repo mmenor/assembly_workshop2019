@@ -92,6 +92,8 @@ The output of FastQC is an HTML page with plots that unfortunately we cannot vie
 
 The accuracy of a base's identifiy is measured using [Phred quality scores](https://en.wikipedia.org/wiki/Phred_quality_score). The higher the score, the better. Roughly, a Phred score of 20 or above (99+% accuracy) is great.
 
+Check out the [FastQC manual](https://dnacore.missouri.edu/PDF/FastQC_Manual.pdf) for more information on each plot.
+
 # Quality Filtering and Trimming
 
 As you saw, base quality degrades at the ends of the read, particularly at the 5' end. Let's trim low quality bases of the ends our reads using [cutadapt](https://cutadapt.readthedocs.io/en/stable/). Cutadapt can also trim off adapters, but as we didn't identify any with FastQC, it is not required today.
