@@ -164,7 +164,7 @@ samtools index alignment/SRR097849.bam
 
 # Alignment Metrics
 
-Bowtie2 does provide some metrics on how well the alignment went, e.g. % of reads aligned, but it is useful to save a table with such metrics. This is easy to do using Picard.
+Bowtie2 does provide some metrics on how well the alignment went, e.g. % of reads aligned, but it is useful to save a table with such metrics. This is easy to do using Picard. See the [documentation](https://broadinstitute.github.io/picard/picard-metric-definitions.html#AlignmentSummaryMetrics) for further details on each column of the report.
 
 ```bash
 picard CollectAlignmentSummaryMetrics INPUT=alignment/SRR097849.bam OUTPUT=alignment/SRR097849_metrics.txt REFERENCE_SEQUENCE=/home/bqhs/workshop/hg19chr21.fa
