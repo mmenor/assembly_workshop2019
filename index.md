@@ -64,7 +64,7 @@ Alignment of raw reads to a full reference genome is resource consuming, so for 
 less /home/bqhs/workshop/hg19chr21.fa
 ```
 
-At the end of this tutorial, we would like to see which variants we've detected in the MCF7 dataset correspond to known variants in the dbSnp database. The database for chromosome 21 can be found here, `/home/bqhs/workshop/dbsnp.hg19.21.vcf`. Again you can use the `view` command to check it out. We'll cover the format of a VCF file later.
+At the end of this tutorial, we would like to see which variants we've detected in the MCF7 dataset correspond to known variants in the dbSnp database. The database for chromosome 21 can be found here, `/home/bqhs/workshop/dbsnp.hg19.21.vcf`. Again you can use the `less` command to check it out. We'll cover the format of a VCF file later.
 
 # Linux Command Line
 
