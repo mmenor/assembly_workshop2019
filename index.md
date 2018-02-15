@@ -129,17 +129,23 @@ fastqc -o raw_qc filtered_reads/trim_SRR097849_1.fastq filtered_reads/trim_SRR09
 
 # Reference Genome Index
 
-The next command is for your future reference. We've already built an index for the chromosome 21 of the human genome for this workshop, so you don't need to run it yourself. If you do attempt the command, it will fail as you don't have permission to alter this file.
+The next step will be aligning the filtered and trimmed reads to a reference human genome (hg19). Aligners for short DNA reads require an index of the reference genome in order to align efficiently. We've chosen [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) as our aligner. Therefore, we need an index compatible with Bowtie2.
 
-The next step will be aligning the filtered and trimmed reads to a reference human genome (hg19). Aligners for short DNA reads require an index of the reference genome in order to align efficiently. We've chosen [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) as our aligner. Therefore, we need an index compatible with Bowtie2 and that can be created using the following command,
+The next command set of commands is optional since we've already built an index for the chromosome 21 of the human genome for this workshop, so you don't need to run it yourself. Generally, you don't build a reference genome index with every analysis. Once you built an index for a genome, you can reuse it with future projects. In fact, you could just download pre-built indices for popular genomes and just use those, e.g. [Illumina iGenomes](https://support.illumina.com/sequencing/sequencing_software/igenome.html).
+
+In any case, this an example of how to build an index starting from a reference FASTA file.
 
 ```bash
-bowtie2-build /home/bqhs/workshop/hg19chr21.fa /home/bqhs/reference/hg19chr21.fa
+mkdir reference
+cp /home/bqhs/workshop/hg19chr21.fa reference
+bowtie2-build reference/hg19chr21.fa reference/hg19chr21.fa
 ```
 
-While the arguments look identical, they have different purposes. The first argument specifies a FASTA file of the sequence(s) we want to index. In this case contains only chromosome 21 of the human genome. The second argument specifies the name of the index, which I chose to name the same as the input.
+The `cp` is a standard Linux command to copy a file. In this case we're copying `/home/bqhs/workshop/hg19chr21.fa` to your new `reference` folder.
 
-Generally, you don't build a reference genome index with every analysis. Once you built an index for hg19, you can reuse it with future projects. In fact, you could just download pre-built indices for popular genomes and just use those, e.g. [Illumina iGenomes](https://support.illumina.com/sequencing/sequencing_software/igenome.html).
+While the arguments for `bowtie2-build` look identical, they have different purposes. The first argument specifies a FASTA file of the sequence(s) we want to index. In this case contains only chromosome 21 of the human genome. The second argument specifies the name of the index, which I chose to name the same as the input.
+
+
 
 # Align Reads
 
