@@ -92,7 +92,7 @@ The output of FastQC is an HTML page with plots that unfortunately we cannot vie
 
 The accuracy of a base's identifiy is measured using [Phred quality scores](https://en.wikipedia.org/wiki/Phred_quality_score). The higher the score, the better. Roughly, a Phred score of 20 or above (99+% accuracy) is great.
 
-Check out the [FastQC manual](https://dnacore.missouri.edu/PDF/FastQC_Manual.pdf) for more information on each plot.
+Check out the [FastQC manual](https://dnacore.missouri.edu/PDF/FastQC_Manual.pdf) for more information on each plot. Also check out some details of the FASTQ format on the [Wikipedia entry](https://en.wikipedia.org/wiki/FASTQ_format)
 
 # Quality Filtering and Trimming
 
@@ -139,6 +139,8 @@ bowtie2 -x /home/bqhs/workshop/hg19chr21.fa -1 filtered_reads/trim_SRR097849_1.f
 
 We again create a new folder, `alignment`, to save our results (BAM and SAM files). The next command, `bowtie2`, executes the alignment using Bowtie2. The first argument, `-x`, specifies the reference genome. In this case, it is chromosome 21 of the human genome. `-1` and `-2` specifies the input paired-end reads. We're using our filtered and trimmed reads here. Finally `-S` specifies the name of our output SAM file.
 
+A SAM file is human readable (to some extent), so you can open a small SAM file with a text editor for viewing. See the [Wikipedia entry](https://en.wikipedia.org/wiki/SAM_(file_format)) for format details.
+
 Typically a compressed version of the SAM file, called a BAM file, is used in downstream analysis. We will use [Samtools](http://www.htslib.org/) for this conversion. Samtools also lets us sort the read by alignment position
 
 ```bash
@@ -182,6 +184,8 @@ freebayes -f /home/bqhs/workshop/hg19chr21.fa alignment/SRR097849.bam > variants
 ```
 
 We first create a new folder, `variants`, to store our variant data. We then call `freebayes`. The `-f` argument specifies the FASTA file for the reference genome. This should be the same file used for alignment. Next we specify the input BAM file(s). In this tutorial we only have a single sample, but if you have more, you can list them all to improve variant detection. Normally FreeBayes will print the output to your terminal's screen. We can redirect it and save it in an output file instead, using `> variants/SRR097849.vcf` at the end of the command.
+
+A VCF file is human readable and our VCF file is small enough to be viewed with a text editor. Details on the standard VCF format can be seen on the [Wikipedia entry](https://en.wikipedia.org/wiki/Variant_Call_Format). Note that this format is less standardized in my experience, with different variant callers and annotators adding their own non-standard fields.
 
 # Variant Annotation
 
