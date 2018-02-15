@@ -50,9 +50,21 @@ With PuTTY and FileZilla you can connect to tutorial server:
 
 [MCF7 breast cancer cell line](https://www.ncbi.nlm.nih.gov/sra/SRX040531). On the server we have a 10% subsample of the data for tutorial purposes saved at `/home/bqhs/workshop/SRR097849_1.fastq` and `/home/bqhs/workshop/SRR097849_2.fastq`. This is a paired-end experiment and thus we have two FASTQ files, one per end. FASTQ is the file format for raw reads and it contains information on the sequence and the quality (accurracy) of each base call.
 
-Alignment of raw reads to a full reference genome is resource consuming, so for this tutorial we will only align to chromosome 21 of the human genome (hg19). There reference can be viewed here, `/home/bqhs/workshop/hg19chr21.fa`.
+Will talk a little more about Linux commands later, but for now you can view the first FASTQ file with this command. Also check out some details of the FASTQ format on the [Wikipedia entry](https://en.wikipedia.org/wiki/FASTQ_format)
 
-At the end of this tutorial, we would like to see which variants we've detected in the MCF7 dataset correspond to known variants in the dbSnp database. The database for chromosome 21 can be viewed here, `/home/bqhs/workshop/dbsnp.hg19.21.vcf`.
+```bash
+less /home/bqhs/workshop/SRR097849_1.fastq
+```
+
+The arrow keys scroll the file up and down and the q key exits the viewer. You can view the second FASTQ file by changing the file name in the command.
+
+Alignment of raw reads to a full reference genome is resource consuming, so for this tutorial we will only align to chromosome 21 of the human genome (hg19). There reference is saved here, `/home/bqhs/workshop/hg19chr21.fa`, and can be viewed using,
+
+```bash
+less /home/bqhs/workshop/hg19chr21.fa
+```
+
+At the end of this tutorial, we would like to see which variants we've detected in the MCF7 dataset correspond to known variants in the dbSnp database. The database for chromosome 21 can be found here, `/home/bqhs/workshop/dbsnp.hg19.21.vcf`. Again you can use the `view` command to check it out. We'll cover the format of a VCF file later.
 
 # Linux Command Line
 
@@ -92,7 +104,7 @@ The output of FastQC is an HTML page with plots that unfortunately we cannot vie
 
 The accuracy of a base's identifiy is measured using [Phred quality scores](https://en.wikipedia.org/wiki/Phred_quality_score). The higher the score, the better. Roughly, a Phred score of 20 or above (99+% accuracy) is great.
 
-Check out the [FastQC manual](https://dnacore.missouri.edu/PDF/FastQC_Manual.pdf) for more information on each plot. Also check out some details of the FASTQ format on the [Wikipedia entry](https://en.wikipedia.org/wiki/FASTQ_format)
+Check out the [FastQC manual](https://dnacore.missouri.edu/PDF/FastQC_Manual.pdf) for more information on each plot.
 
 # Quality Filtering and Trimming
 
