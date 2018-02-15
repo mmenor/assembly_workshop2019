@@ -141,7 +141,7 @@ cp /home/bqhs/workshop/hg19chr21.fa reference
 bowtie2-build reference/hg19chr21.fa reference/hg19chr21.fa
 ```
 
-The `cp` is a standard Linux command to copy a file. In this case we're copying `/home/bqhs/workshop/hg19chr21.fa` to your new `reference` folder.
+`cp` is a standard Linux command to copy a file. In this case we're copying `/home/bqhs/workshop/hg19chr21.fa` to your new `reference` folder.
 
 While the arguments for `bowtie2-build` look identical, they have different purposes. The first argument specifies a FASTA file of the sequence(s) we want to index. In this case contains only chromosome 21 of the human genome. The second argument specifies the name of the index, which I chose to name the same as the input.
 
