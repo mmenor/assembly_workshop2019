@@ -30,7 +30,7 @@ We will be using a Linux server (Ubuntu) for this workshop. You will need to use
 
 Windows software:
 * This computer lab requires 32-bit versions
-* [FileZilla](https://filezilla-project.org/download.php?type=client)
+* [FileZilla](https://filezilla-project.org/download.php?platform=win32)
 * [PuTTY](https://the.earth.li/~sgtatham/putty/latest/w32/putty-0.70-installer.msi)
 
 With PuTTY and FileZilla you can connect to tutorial server:
