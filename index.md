@@ -97,11 +97,12 @@ fastqc SRR1553425_1.fastq SRR1553425_2.fastq
 ```
 The `fastqc` command simply requires you to list all the FASTQ files to analyze.
 
-The output of FastQC is an HTML page with plots that unfortunately we cannot view with an SSH remote terminal. Let's download the results using [FileZilla](https://filezilla-project.org/). Connect using the same guest credentials you used on SSH. Navigate to `/home/guest2019/write_your_UH_username_here` to find your FASTQC results. The report files names should be SRR1553425_1_fastqc.html and SRR1553425_2_fastqc.html.
+The output of FastQC is an HTML page with plots that unfortunately we cannot view with an SSH remote terminal. Let's download the results using [FileZilla](https://filezilla-project.org/). Connect using the same guest credentials you used on SSH. Navigate to `/home/guest2019/write_your_UH_username_here` to find your FASTQC results. The report files names should be `SRR1553425_1_fastqc.html` and `SRR1553425_2_fastqc.html`.
 
 The accuracy of a base's identifiy is measured using [Phred quality scores](https://en.wikipedia.org/wiki/Phred_quality_score). The higher the score, the better. Roughly, a Phred score of 20 or above (99+% accuracy) is great.
 
 Check out the [FastQC manual](https://dnacore.missouri.edu/PDF/FastQC_Manual.pdf) for more information on each plot.
+
 
 # Quality Filtering and Trimming
 
@@ -171,7 +172,7 @@ To see a messier assembly result, you can load the graph `spades_output/K21/asse
 
 First download [Ebolavirus reference genomes](https://github.com/mmenor/assembly_workshop2019/raw/master/ebolavirus_references.zip) to compare to and unzip. Open [Mauve](http://darlinglab.org/mauve/mauve.html). Then on the main menu select File->Align with progressiveMauve. This will trigger a pop-up to specify your input genomes. Click "Add Sequence" and select all the reference genomes you downloaded (the `.gb` files) and click "Open". Click "Add Sequence" again but this time select your `spades_output/scaffolds.fasta` file and hit "Open". Finally, click "Align" to process your data.
 
-This will produce a visualization comparing the conservation of various regions across these assembled genomes. Since we are using GenBank files (`.gb`) files for our references, we will also get gene annotations as part of the visualization.
+This will produce a visualization comparing the conservation of various regions across these assembled genomes. Since we are using GenBank files (`.gb`) for our references, we will also get gene annotations as part of the visualization.
 
 
 # Genome Annotation
