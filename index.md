@@ -16,13 +16,13 @@
 * [Server Information](#server-information)
 * [Dataset Information](#dataset-information)
 * [Linux Command Line](#linux-command-line)
-* [Downloading Data] (#downloading-data)
+* [Downloading Data](#downloading-data)
 * [Quality Control](#quality-control)
 * [Quality Filtering and Trimming](#quality-filtering-and-trimming)
-* [Genome Assembly] (#genome-assembly)
-* [Assembly Evaluation] (#assembly-evaluation)
-* [Assembly Visualization] (#assembly-visualization)
-* [Genome Annotation] (#genome-annotation)
+* [Genome Assembly](#genome-assembly)
+* [Assembly Evaluation](#assembly-evaluation)
+* [Assembly Visualization](#assembly-visualization)
+* [Genome Annotation](#genome-annotation)
 
 # Server Information
 
