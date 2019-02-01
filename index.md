@@ -169,7 +169,7 @@ To see a messier assembly result, you can load the graph `spades_output/K21/asse
 
 # Comparing Genomes
 
-First download [Ebolavirus reference genomes](ebolavirus_references.zip) to compare to and unzip. Open [Mauve](http://darlinglab.org/mauve/mauve.html). Then on the main menu select File->Align with progressiveMauve. This will trigger a pop-up to specify your input genomes. Click "Add Sequence" and select all the reference genomes you downloaded (the `.gb` files) and click "Open". Click "Add Sequence" again but this time select your `spades_output/scaffolds.fasta` file and hit "Open". Finally, click "Align" to process your data.
+First download [Ebolavirus reference genomes](https://github.com/mmenor/assembly_workshop2019/raw/master/ebolavirus_references.zip) to compare to and unzip. Open [Mauve](http://darlinglab.org/mauve/mauve.html). Then on the main menu select File->Align with progressiveMauve. This will trigger a pop-up to specify your input genomes. Click "Add Sequence" and select all the reference genomes you downloaded (the `.gb` files) and click "Open". Click "Add Sequence" again but this time select your `spades_output/scaffolds.fasta` file and hit "Open". Finally, click "Align" to process your data.
 
 This will produce a visualization comparing the conservation of various regions across these assembled genomes. Since we are using GenBank files (`.gb`) files for our references, we will also get gene annotations as part of the visualization.
 
