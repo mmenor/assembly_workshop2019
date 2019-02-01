@@ -22,7 +22,7 @@
 * [Genome Assembly](#genome-assembly)
 * [Assembly Evaluation](#assembly-evaluation)
 * [Assembly Visualization](#assembly-visualization)
-* [Comparing Genomes] (#comparing-genomes)
+* [Comparing Genomes](#comparing-genomes)
 * [Genome Annotation](#genome-annotation)
 
 # Server Information
