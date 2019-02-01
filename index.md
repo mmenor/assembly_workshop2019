@@ -179,6 +179,6 @@ This will produce a visualization comparing the conservation of various regions 
 
 Lastly, let's annotate possible genes our assembled genome. First we'll find open reading frames (ORFs) using NCBI's [ORFfinder](https://www.ncbi.nlm.nih.gov/orffinder/). Copy and paste _only_ the first contig from your `spades_output/scaffolds.fasta` file. Submit with the default settings.
 
-To download all ORF results into a FASTA file, on the bottom right box, press "Mark subset..." and pick "All ORFs." The press "Download marked set." By default, this will save the protein predictions. You can also download CDS predictions by clicking on the drop down and changing "Protein FASTA" to "CDS FASTA".
+To download all ORF results into a FASTA file, on the bottom right box, press "Mark subset..." and pick "All ORFs." Then press "Download marked set." By default, this will save the protein predictions. You can also download CDS predictions by clicking on the drop down and changing "Protein FASTA" to "CDS FASTA".
 
 With the list of ORFs, you can now use [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) to try to predict the function of the ORF. Use Nucleotide BLAST for the CDS regions and Protein BLAST for the protein file.
