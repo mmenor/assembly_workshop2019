@@ -17,11 +17,12 @@
 * [Dataset Information](#dataset-information)
 * [Linux Command Line](#linux-command-line)
 * [Downloading Data](#downloading-data)
-* [Quality Control](#quality-control)
+* [Quality Visualization](#quality-visualization)
 * [Quality Filtering and Trimming](#quality-filtering-and-trimming)
 * [Genome Assembly](#genome-assembly)
 * [Assembly Evaluation](#assembly-evaluation)
 * [Assembly Visualization](#assembly-visualization)
+* [Comparing Genomes] (#comparing-genomes)
 * [Genome Annotation](#genome-annotation)
 
 # Server Information
@@ -32,6 +33,8 @@ Windows software:
 * This computer lab requires 32-bit versions
 * [FileZilla](https://filezilla-project.org/download.php?platform=win32)
 * [PuTTY](https://the.earth.li/~sgtatham/putty/latest/w32/putty-0.70-installer.msi)
+* [Bandage](https://rrwick.github.io/Bandage/)
+* [Mauve](http://darlinglab.org/mauve/download.html)
 
 With PuTTY and FileZilla you can connect to tutorial server:
 * Address: 168.105.161.70
@@ -85,7 +88,7 @@ less SRR1553425_1.fastq
 
 The arrow keys scroll the file up and down and the q key exits the viewer. You can view the second FASTQ file by changing the file name in the command.
 
-# Quality Control
+# Quality Visualization
 
 Garbage in is garbage out, so let's see check if we have quality issues with our raw reads. We'll be using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/) for this purpose.
 
@@ -162,6 +165,13 @@ The `quast` command is simple. You first specify the reference genome to compare
 We will use [Bandage](https://rrwick.github.io/Bandage/) to visualize the assembly graph. Download and install this on your computer. When it is open, hit File->Load graph in the main menu. Here pick your final SPAdes assembly graph that you downloaded, `spades_output/assembly_graph.fastg`. Then hit the "Draw graph" button on the left side. You'll see we got clean assembly results.
 
 To see a messier assembly result, you can load the graph `spades_output/K21/assembly_graph.fastg`. This is the assembly graph using 21-mers and it didn't turn out as well.
+
+
+# Comparing Genomes
+
+First download [Ebolavirus reference genomes](ebolavirus_references.zip) to compare to and unzip. Open [Mauve](http://darlinglab.org/mauve/mauve.html). Then on the main menu select File->Align with progressiveMauve. This will trigger a pop-up to specify your input genomes. Click "Add Sequence" and select all the reference genomes you downloaded (the `.gb` files) and click "Open". Click "Add Sequence" again but this time select your `spades_output/scaffolds.fasta` file and hit "Open". Finally, click "Align" to process your data.
+
+This will produce a visualization comparing the conservation of various regions across these assembled genomes. Since we are using GenBank files (`.gb`) files for our references, we will also get gene annotations as part of the visualization.
 
 
 # Genome Annotation
