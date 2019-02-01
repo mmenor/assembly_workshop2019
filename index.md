@@ -30,8 +30,8 @@ We will be using a Linux server (Ubuntu) for this workshop. You will need to use
 
 Windows software:
 * This computer lab requires 32-bit versions
-* [PuTTY] (https://the.earth.li/~sgtatham/putty/latest/w32/putty-0.70-installer.msi)
-* [FileZilla] (https://dl1.cdn.filezilla-project.org/client/FileZilla_3.40.0_win32-setup.exe?h=5S9SJGqeDGBbBzMQiOAoHg&x=1548983685)
+* [PuTTY](https://the.earth.li/~sgtatham/putty/latest/w32/putty-0.70-installer.msi)
+* [FileZilla](https://dl1.cdn.filezilla-project.org/client/FileZilla_3.40.0_win32-setup.exe?h=5S9SJGqeDGBbBzMQiOAoHg&x=1548983685)
 
 With PuTTY and FileZilla you can connect to tutorial server:
 * Address: 168.105.161.70
@@ -75,7 +75,7 @@ In the interest of time, we'll only a 100,000 read subsample of the dataset (SRR
 fastq-dump --split-files -X 100000 SRR1553425
 ```
 
-The `fastq-dump` command downloads the first 100,000 reads from SRR1553425 and saves into a pair of FASTQ files. The `-X` parameter is used to specify the number of reads (default is all reads). The `--split-files` parameter specifies that the data should be saved into two separate FASTQ files, which is typical for paired-end sequencing. Each end gets its own file. Use the `ls` command to verify the files SRR1553425_1.fastq and SRR1553425_2.fastq have been downloaded.
+The `fastq-dump` command downloads the first 100,000 reads from SRR1553425 and saves into a pair of FASTQ files. The `-X` parameter is used to specify the number of reads (default is all reads). The `--split-files` parameter specifies that the data should be saved into two separate FASTQ files, which is typical for paired-end sequencing. Each end gets its own file. Use the `ls` command to verify the files `SRR1553425_1.fastq` and `SRR1553425_2.fastq` have been downloaded.
 
 You can browse the FASTQ files using the `less` command, e.g. for the first FASTQ file:
 
@@ -116,7 +116,7 @@ With that, we can now do quality and adapter trimming,
 trimmomatic PE SRR1553425_1.fastq SRR1553425_2.fastq trimmed_1.fastq unpaired_1.fastq trimmed_2.fastq unpaired_2.fastq ILLUMINACLIP:adapters.fa:2:30:10 LEADING:20 TRAILING:20 AVGQUAL:20 MINLEN:20
 ```
 
-There is a lot going on in the `trimmoatic` command. First we specify `PE` to say we're working with paired-end data. Next we specify our pair of input FASTQ files (`SRR1553425_1.fastq` and `SRR1553425_2.fastq`). Trimmomatic outputs two FASTQ files per input FASTQ, which gives us a total of four output filenames to specify. You can name them whatever you want, but the names I've given them indicate what the file is.
+There is a lot going on in the `trimmomatic` command. First we specify `PE` to say we're working with paired-end data. Next we specify our pair of input FASTQ files (`SRR1553425_1.fastq` and `SRR1553425_2.fastq`). Trimmomatic outputs two FASTQ files per input FASTQ, which gives us a total of four output filenames to specify. You can name them whatever you want, but the names I've given them indicate what the file is.
 
 During the trimming process, entire reads may be filtered out. Thus the output is split into two files: one file that contains reads that are still paired-end (both reads survived filtering) and one file that contains reads that are now single-end because their mate was filtered out. For the first mate file `SRR1553425_1.fastq`, the file `trimmed_1.fastq` contains the trimmed paired-end reads, while `unpaired_1.fastq` contains the now single-ends reads. 
 
@@ -127,7 +127,7 @@ The parameters `LEADING:20 TRAILING:20` specifies the Phred qualty score cutoffs
 
 # Genome Assembly
 
-There are a lot of genome assemblers out there for different purposes. [SPAdes] (http://cab.spbu.ru/software/spades/) is designed for single- and multi-cell bacterial datasets. SPAdes is easier to use than Velvet, one of the more popular genome assemblers, since you can specify multiple k-mer lengths and it will handle combining the results for you.
+There are a lot of genome assemblers out there for different purposes. [SPAdes](http://cab.spbu.ru/software/spades/) is designed for single- and multi-cell bacterial datasets. SPAdes is easier to use than Velvet, one of the more popular genome assemblers, since you can specify multiple k-mer lengths and it will handle combining the results for you.
 
 ```bash
 cat unpaired_1.fastq unpaired_2.fastq > unpaired.fastq
@@ -148,7 +148,7 @@ The important SPAdes results:
 
 # Assembly Evaluation
 
-We will use [Quality Assement Tool for Genome Assemblies (QUAST)] (http://quast.sourceforge.net/quast) to evaluate our assembly. This is done to compare different assemblies (results from different k-mer lengths, assembler programs, etc.). Typically in _de novo_ sequencing you would not have a reference genome to compare to, but we do in this case. If you provide QUAST a reference genome it can caculate additional stats like the number of mistmatches and indels compared to the reference.
+We will use [Quality Assement Tool for Genome Assemblies (QUAST)](http://quast.sourceforge.net/quast) to evaluate our assembly. This is done to compare different assemblies (results from different k-mer lengths, assembler programs, etc.). Typically in _de novo_ sequencing you would not have a reference genome to compare to, but we do in this case. If you provide QUAST a reference genome it can caculate additional stats like the number of mistmatches and indels compared to the reference.
 
 ```bash
 quast -R /home/bqhs/workshop2019/KJ660346.fasta spades_output/scaffolds.fasta
@@ -159,7 +159,7 @@ The `quast` command is simple. You first specify the reference genome to compare
 
 # Assembly Visualization
 
-We will use [Bandage] (https://rrwick.github.io/Bandage/) to visualize the assembly graph. Download and install this on your computer. When it is open, hit File->Load graph in the main menu. Here pick your final SPAdes assembly graph that you downloaded, `spades_output/assembly_graph.fastg`. Then hit the "Draw graph" button on the left side. You'll see we got clean assembly results.
+We will use [Bandage](https://rrwick.github.io/Bandage/) to visualize the assembly graph. Download and install this on your computer. When it is open, hit File->Load graph in the main menu. Here pick your final SPAdes assembly graph that you downloaded, `spades_output/assembly_graph.fastg`. Then hit the "Draw graph" button on the left side. You'll see we got clean assembly results.
 
 To see a messier assembly result, you can load the graph `spades_output/K21/assembly_graph.fastg`. This is the assembly graph using 21-mers and it didn't turn out as well.
 
@@ -170,4 +170,4 @@ Lastly, let's annotate possible genes our assembled genome. First we'll find ope
 
 To download all ORF results into a FASTA file, on the bottom right box, press "Mark subset..." and pick "All ORFs." The press "Download marked set." By default, this will save the protein predictions. You can also download CDS predictions by clicking on the drop down and changing "Protein FASTA" to "CDS FASTA".
 
-With the list of ORFs, you can now use [BLAST] (https://blast.ncbi.nlm.nih.gov/Blast.cgi) to try to predict the function of the ORF. Use Nucleotide BLAST for the CDS regions and Protein BLAST for the protein file.
+With the list of ORFs, you can now use [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) to try to predict the function of the ORF. Use Nucleotide BLAST for the CDS regions and Protein BLAST for the protein file.
