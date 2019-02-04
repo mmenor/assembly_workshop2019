@@ -164,7 +164,7 @@ The `quast` command is simple. You first specify the reference genome to compare
 # Assembly Visualization
 
 <center>
-<a href="images/bandage.png"><img src="images/bandage.png" alt="Bandage" style="height: 300px;"/></a>
+<a href="images/bandage.png"><img src="images/bandage.png" alt="Bandage" style="height: 200px;"/></a>
 </center>
 
 We will use [Bandage](https://rrwick.github.io/Bandage/) to visualize the assembly graph. Download and install this on your computer. When it is open, hit File->Load graph in the main menu. Here pick your final SPAdes assembly graph that you downloaded, `spades_output/assembly_graph.fastg`. Then hit the "Draw graph" button on the left side. You'll see we got clean assembly results.
@@ -174,12 +174,23 @@ To see a messier assembly result, you can load the graph `spades_output/K21/asse
 
 # Comparing Genomes
 
+<center>
+<a href="images/mauve01.png"><img src="images/mauve01.png" alt="Mauve" style="height: 200px;"/></a>&nbsp;
+<a href="images/mauve02.png"><img src="images/mauve02.png" alt="Mauve" style="height: 200px;"/></a>&nbsp;
+<a href="images/mauve03.png"><img src="images/mauve03.png" alt="Mauve" style="height: 200px;"/></a>&nbsp;
+</center>
+
 First download [Ebolavirus reference genomes](https://github.com/mmenor/assembly_workshop2019/raw/master/ebolavirus_references.zip) to compare to and unzip. Open [Mauve](http://darlinglab.org/mauve/mauve.html). Then on the main menu select File->Align with progressiveMauve. This will trigger a pop-up to specify your input genomes. Click "Add Sequence" and select all the reference genomes you downloaded (the `.gb` files) and click "Open". Click "Add Sequence" again but this time select your `spades_output/scaffolds.fasta` file and hit "Open". Finally, click "Align" to process your data.
 
 This will produce a visualization comparing the conservation of various regions across these assembled genomes. Since we are using GenBank files (`.gb`) for our references, we will also get gene annotations as part of the visualization.
 
 
 # Genome Annotation
+
+<center>
+<a href="images/orffinder.png"><img src="images/orffinder.png" alt="ORFfinder" style="height: 200px;"/></a>&nbsp;
+<a href="images/blast.png"><img src="images/blast.png" alt="BLAST" style="height: 200px;"/></a>&nbsp;
+</center>
 
 Lastly, let's annotate possible genes our assembled genome. First we'll find open reading frames (ORFs) using NCBI's [ORFfinder](https://www.ncbi.nlm.nih.gov/orffinder/). Copy and paste _only_ the first contig from your `spades_output/scaffolds.fasta` file. Submit with the default settings.
 
