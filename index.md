@@ -163,6 +163,10 @@ The `quast` command is simple. You first specify the reference genome to compare
 
 # Assembly Visualization
 
+<center>
+<a href="images/bandage.png"><img src="images/bandage.png" alt="Bandage" style="height: 300px;"/></a>
+</center>
+
 We will use [Bandage](https://rrwick.github.io/Bandage/) to visualize the assembly graph. Download and install this on your computer. When it is open, hit File->Load graph in the main menu. Here pick your final SPAdes assembly graph that you downloaded, `spades_output/assembly_graph.fastg`. Then hit the "Draw graph" button on the left side. You'll see we got clean assembly results.
 
 To see a messier assembly result, you can load the graph `spades_output/K21/assembly_graph.fastg`. This is the assembly graph using 21-mers and it didn't turn out as well.
