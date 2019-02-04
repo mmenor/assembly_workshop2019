@@ -36,6 +36,11 @@ Windows software:
 * [Bandage](https://rrwick.github.io/Bandage/)
 * [Mauve](http://darlinglab.org/mauve/download.html)
 
+<center>
+<a href="images/putty.png"><img src="images/putty.png" alt="PuTTY" style="height: 200px;"/></a>&nbsp;
+<a href="images/filezilla.png"><img src="images/filezilla.png" alt="FileZilla" style="height: 200px;"/></a>&nbsp;
+</center>
+
 With PuTTY and FileZilla you can connect to tutorial server:
 * Address: 168.105.161.70
 * Port: 22
@@ -96,6 +101,10 @@ Garbage in is garbage out, so let's see check if we have quality issues with our
 fastqc SRR1553425_1.fastq SRR1553425_2.fastq
 ```
 The `fastqc` command simply requires you to list all the FASTQ files to analyze.
+
+<center>
+<a href="images/download.png"><img src="images/download.png" alt="Download" style="height: 200px;"/></a>&nbsp;
+</center>
 
 The output of FastQC is an HTML page with plots that unfortunately we cannot view with an SSH remote terminal. Let's download the results using [FileZilla](https://filezilla-project.org/). Connect using the same guest credentials you used on SSH. Navigate to `/home/guest2019/write_your_UH_username_here` to find your FASTQC results. The report files names should be `SRR1553425_1_fastqc.html` and `SRR1553425_2_fastqc.html`.
 
